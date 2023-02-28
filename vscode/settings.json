@@ -1,0 +1,121 @@
+{
+  "editor.accessibilitySupport": "off",
+  "editor.cursorSurroundingLines": 5,
+  "editor.fontFamily": "MonacoB Nerd Font",
+  "editor.fontSize": 13,
+  "editor.lineHeight": 1.6,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.rulers": [
+    120
+  ],
+  "editor.tabCompletion": "on",
+  "editor.trimAutoWhitespace": true,
+  "editor.wordWrap": "off",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.simpleDialog.enable": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "git.autofetch": true,
+  "git.mergeEditor": false,
+  "gitlens.keymap": "alternate",
+  "go.toolsManagement.autoUpdate": true,
+  "scm.diffDecorationsGutterPattern": {
+    "modified": false
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.lineHeight": 1.2,
+  "terminal.integrated.gpuAcceleration": "off",
+  "terminal.integrated.macOptionIsMeta": true,
+  "vim.handleKeys": {
+    "<C-[>": true,
+    "<C-a>": true,
+    "<C-d>": true,
+    "<C-e>": true,
+    "<C-m>": true,
+    "<C-r>": true,
+    "<C-t>": true,
+    "<C-u>": true,
+    "<C-v>": true,
+    "<C-w>": true,
+    "<C-x>": true,
+    "<C-y>": true
+  },
+  "vim.highlightedyank.enable": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<C-a>"
+      ],
+      "commands": [
+        "cursorHome"
+      ]
+    },
+    {
+      "before": [
+        "<C-e>"
+      ],
+      "after": [
+        "<Esc>",
+        "A"
+      ]
+    }
+  ],
+  "vim.leader": " ",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<cr>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "after": [
+        "g",
+        "h"
+      ]
+    }
+  ],
+  "vim.useCtrlKeys": false,
+  "vim.useSystemClipboard": true,
+  "vim.visualstar": true,
+  "window.commandCenter": true,
+  "workbench.settings.editor": "json",
+  "workbench.startupEditor": "none",
+  "zenMode.fullScreen": false,
+  "zenMode.hideLineNumbers": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[svelte]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "remote.SSH.remotePlatform": {
+    "coder-vscode--peter--pcasdf": "linux"
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "[python]": {
+    "editor.formatOnType": true
+  },
+}

@@ -1,0 +1,18 @@
+[user]
+	name = Peter Cho
+	email = peter.cho@discordapp.com
+[core]
+	editor = vim
+[push]
+	default = current
+[pull]
+	ff = only
+[fetch]
+	prune = true
+[merge]
+	conflictstyle = diff3
+	ff = only
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
+[init]
+	defaultBranch = main
