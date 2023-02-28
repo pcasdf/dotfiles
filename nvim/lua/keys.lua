@@ -8,8 +8,6 @@ set("n", "<C-h>", "<C-w><C-h>", options)
 set("n", "<C-c>", "<C-w>c", options)
 set("n", "<C-v>", "<C-w>o", options)
 
-set("i", "<C-j>", "<esc>o", options)
-set("i", "<C-k>", "<esc>O", options)
 set("i", "<C-f>", "<right>", options)
 set("i", "<C-b>", "<left>", options)
 
@@ -23,26 +21,25 @@ set("n", "[l", ":lprevious<cr>", options)
 set("n", "]l", ":lnext<cr>", options)
 set("n", "[b", ":bprevious<cr>", options)
 set("n", "]b", ":bnext<cr>", options)
+set("n", "[t", ":tabprevious<cr>", options)
+set("n", "]t", ":tabnext<cr>", options)
 
-set("n", "<leader><leader>x", ":%bd|e#|bd#<cr>|'\"", options) -- Close other buffers
-set("n", "<leader><leader>b", ":bd|e#<cr>|'\"", options) -- Reload current buffer
-set("n", "<leader><leader>f", ':let @+=expand("%:~:.")<cr>', options) -- Copy relative file path
-set("n", "<leader><leader>F", ':let @+=expand("%:p")<cr>', options) -- Copy absolute file path
+set("n", "<M-x>", ":%bd|e#|bd#<cr>|'\"", options) -- Close other buffers
+set("n", "<M-n>", ":bd|e#<cr>|'\"", options) -- Reload current buffer
+set("n", "<M-p>", ':let @+=expand("%:~:.")<cr>', options) -- Copy relative file path
+set("n", "<M-y>", ':let @+=expand("%:p")<cr>', options) -- Copy absolute file path
 
 set("n", "<leader>v", ":DiffviewOpen<cr>", options)
-set("n", "<leader>V", ":DiffviewClose<cr>", options)
+set("n", "<leader><leader>v", ":DiffviewClose<cr>", options)
 set("n", "<leader>h", ":DiffviewFileHistory %<cr>", options)
-set("n", "<leader>H", ":DiffviewFileHistory<cr>", options)
 set("v", "<leader>h", ":'<,'>DiffviewFileHistory<cr>", options)
+set("n", "<leader><leader>h", ":DiffviewFileHistory<cr>", options)
 
-set("n", "<leader><leader>U", ":UndotreeToggle<cr>", options)
-
-set("n", "<leader>Y", "<Plug>OSCYank", options)
-set("v", "<leader>Y", ":OSCYank<cr>", options)
+set("n", "<leader><leader>y", "<Plug>OSCYank", options)
+set("v", "<leader>y", ":OSCYank<cr>", options)
 set("n", "<leader>y", ":OSCYankReg +<cr>", options)
-set("v", "<leader>y", ":OSCYankReg +<cr>", options)
 
 set("n", "<leader>o", ":SymbolsOutline<cr>", options)
 
 set("n", "<leader>t", ":NvimTreeToggle<cr>", options)
-set("n", "<leader>T", ":NvimTreeFindFile<cr>", options)
+set("n", "<leader><leader>t", ":NvimTreeFindFile<cr>", options)

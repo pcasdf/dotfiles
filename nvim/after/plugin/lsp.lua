@@ -1,4 +1,5 @@
 local set = vim.keymap.set
+local nvim_lsp = require("lspconfig")
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Information = " " }
 
@@ -8,44 +9,24 @@ for type, icon in pairs(signs) do
 end
 
 vim.diagnostic.config({
-	virtual_text = false,
+	virtual_text = true,
 	signs = true,
 	underline = false,
 	update_in_insert = false,
 	severity_sort = false,
 })
 
-local lsp_formatting = function(bufnr)
-	vim.lsp.buf.format({
-		filter = function(client)
-			return client.name == "null-ls"
-		end,
-		bufnr = bufnr,
-	})
-end
-
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 local on_attach = function(client, bufnr)
 	local buf = vim.lsp.buf
 	local diagnostic = vim.diagnostic
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-	set("n", "<C-_>", diagnostic.setloclist, bufopts)
-	set("n", "gr", buf.references, bufopts)
+	set("n", "<leader><leader>l", diagnostic.setloclist, bufopts)
+	set("n", "gR", buf.references, bufopts)
 	set("i", "<C-l>", buf.signature_help, bufopts)
-	set("n", "<leader>F", function()
+	set("n", "<C-_>", function()
 		buf.format({ async = true })
 	end, bufopts)
-
-	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = augroup,
-		buffer = bufnr,
-		callback = function()
-			lsp_formatting(bufnr)
-		end,
-	})
 end
 
 local function get_extra_paths()
@@ -61,7 +42,10 @@ end
 local servers = {
 	bufls = {},
 	bashls = {},
-	denols = { autostart = false },
+	denols = {
+		filetypes = { "typescript" },
+		root_dir = nvim_lsp.util.root_pattern("deno.json"),
+	},
 	dockerls = {},
 	elixirls = {},
 	gopls = {},
@@ -71,12 +55,12 @@ local servers = {
 	jsonnet_ls = {},
 	lua_ls = {},
 	pyright = {
-		handlers = {
-			["textDocument/publishDiagnostics"] = function(...) end,
-		},
 		settings = {
 			python = {
-				analysis = { extraPaths = get_extra_paths() },
+				analysis = {
+					typeCheckingMode = "off",
+					extraPaths = get_extra_paths(),
+				},
 			},
 		},
 	},
@@ -97,7 +81,6 @@ local servers = {
 	yamlls = {},
 }
 
-local nvim_lsp = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 for lsp, options in pairs(servers) do

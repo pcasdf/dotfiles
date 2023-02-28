@@ -3,10 +3,21 @@ return require("packer").startup({
 		use({ "wbthomason/packer.nvim" })
 
 		use({
-			"rmehri01/onenord.nvim",
+			"navarasu/onedark.nvim",
 			config = function()
-				require("onenord").setup()
-				vim.cmd.colorscheme("onenord")
+				require("onedark").setup({
+					highlights = {
+						["@constructor"] = { fmt = "none" },
+						["@text.strong"] = { fmt = "none" },
+						["@text.title"] = { fmt = "none" },
+						TSConstructor = { fmt = "none" },
+						TSStrong = { fmt = "none" },
+						TSTitle = { fmt = "none" },
+						FloatBorder = { bg = "none" },
+						NormalFloat = { bg = "none" },
+					},
+				})
+				vim.cmd.colorscheme("onedark")
 			end,
 		})
 
@@ -73,12 +84,6 @@ return require("packer").startup({
 			"sindrets/diffview.nvim",
 			opt = true,
 			cmd = { "DiffviewOpen", "DiffviewFileHistory" },
-		})
-
-		use({
-			"mbbill/undotree",
-			opt = true,
-			cmd = { "UndotreeToggle" },
 		})
 
 		use({

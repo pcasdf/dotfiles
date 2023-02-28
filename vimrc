@@ -2,11 +2,7 @@ let mapleader = " "
 
 call plug#begin()
 
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'ericbn/vim-solarized'
-Plug 'dracula/vim'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-Plug 'tomasiser/vim-code-dark'
+Plug 'joshdick/onedark.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -60,7 +56,7 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType html       setlocal shiftwidth=2 tabstop=2
 
 syntax on
-colorscheme tokyonight
+colorscheme onedark
 
 hi Normal guibg=NONE
 hi SignColumn guibg=NONE
