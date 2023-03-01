@@ -7,12 +7,6 @@ return require("packer").startup({
 			config = function()
 				require("onedark").setup({
 					highlights = {
-						["@constructor"] = { fmt = "none" },
-						["@text.strong"] = { fmt = "none" },
-						["@text.title"] = { fmt = "none" },
-						TSConstructor = { fmt = "none" },
-						TSStrong = { fmt = "none" },
-						TSTitle = { fmt = "none" },
 						FloatBorder = { bg = "none" },
 						NormalFloat = { bg = "none" },
 					},
@@ -142,6 +136,12 @@ return require("packer").startup({
 			ft = "qf",
 			config = function()
 				require("bqf").setup({ auto_resize_height = true })
+			end,
+		})
+		use({
+			"ggandor/leap.nvim",
+			config = function()
+				require("leap").add_default_mappings()
 			end,
 		})
 	end,

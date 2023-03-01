@@ -53,7 +53,7 @@ require("nvim-treesitter.configs").setup({
 				["]F"] = "@function.outer",
 				["]["] = "@class.outer",
 				["]I"] = "@conditional.outer",
-				["]A"] = "@parameter.inner",
+				["]e"] = "@parameter.inner",
 			},
 			goto_previous_start = {
 				["[f"] = "@function.outer",
@@ -68,7 +68,7 @@ require("nvim-treesitter.configs").setup({
 				["[F"] = "@function.outer",
 				["[]"] = "@class.outer",
 				["[I"] = "@conditional.outer",
-				["[A"] = "@parameter.inner",
+				["[e"] = "@parameter.inner",
 			},
 		},
 		swap = {

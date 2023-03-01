@@ -2,7 +2,7 @@
 	name = Peter Cho
 	email = peter.cho@discordapp.com
 [core]
-	editor = vim
+	editor = nvim
 [push]
 	default = current
 [pull]
