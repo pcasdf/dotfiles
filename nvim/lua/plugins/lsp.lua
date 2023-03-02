@@ -51,7 +51,7 @@ return {
 				local diagnostic = vim.diagnostic
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-				set("n", "<leader><leader>l", diagnostic.setloclist, bufopts)
+				set("n", "<leader>L", diagnostic.setloclist, bufopts)
 				set("n", "gR", buf.references, bufopts)
 				set("i", "<C-l>", buf.signature_help, bufopts)
 				set("n", "<C-_>", function()
@@ -102,7 +102,6 @@ return {
 						},
 					},
 				},
-				starlark_rust = {},
 				sqlls = {},
 				svelte = {},
 				terraformls = {},

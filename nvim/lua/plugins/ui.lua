@@ -1,4 +1,5 @@
 return {
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{
 		"echasnovski/mini.starter",
 		version = false,
@@ -108,14 +109,14 @@ return {
 				mode = { "n", "v" },
 				desc = "Lspsaga code_action",
 			},
-			{ "<leader><leader>r", "<cmd>Lspsaga rename<CR>", desc = "Lspsaga rename" },
+			{ "<leader>R", "<cmd>Lspsaga rename<CR>", desc = "Lspsaga rename" },
 			{ "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Lspsaga goto_definition" },
 			{ "<M-d>", "<cmd>Lspsaga peek_definition<CR>", desc = "Lspsaga peek_definition" },
 			{ "<M-t>", "<cmd>Lspsaga peek_type_definition<CR>", desc = "Lspsaga peek_type_definition" },
 			{ "gt", "<cmd>Lspsaga goto_type_definition<CR>", desc = "Lspsaga goto_type_definition" },
 			{ "<leader>l", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Lspsaga show_line_diagnostics" },
 			{
-				"<leader><leader>i",
+				"<leader>I",
 				"<cmd>Lspsaga show_cursor_diagnostics<CR>",
 				desc = "Lspsaga show_cursor_diagnostics",
 			},
@@ -136,7 +137,7 @@ return {
 				end,
 				desc = "Lspsaga goto_next error",
 			},
-			{ "<leader><leader>o", "<cmd>Lspsaga outline<CR>", desc = "Lspsaga outline" },
+			{ "<leader>O", "<cmd>Lspsaga outline<CR>", desc = "Lspsaga outline" },
 			{ "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Lspsaga hover_doc" },
 		},
 		opts = {
@@ -156,5 +157,70 @@ return {
 			ui = { winblend = 12 },
 		},
 	},
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		cmd = "Neotree",
+		keys = {
+			{
+				"<leader>t",
+				function()
+					require("neo-tree.command").execute({ toggle = true })
+				end,
+				desc = "Explorer NeoTree (root dir)",
+			},
+			{
+				"<leader>T",
+				function()
+					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+				end,
+				desc = "Explorer NeoTree (cwd)",
+			},
+		},
+		deactivate = function()
+			vim.cmd([[Neotree close]])
+		end,
+		init = function()
+			vim.g.neo_tree_remove_legacy_commands = 1
+			if vim.fn.argc() == 1 then
+				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				if stat and stat.type == "directory" then
+					require("neo-tree")
+				end
+			end
+		end,
+		opts = {
+			filesystem = {
+				bind_to_cwd = false,
+				follow_current_file = true,
+			},
+			window = {
+				width = 30,
+				mappings = {
+					["<space>"] = "none",
+				},
+			},
+		},
+	},
+	{
+		"echasnovski/mini.indentscope",
+		version = false,
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			symbol = "│",
+			options = { try_as_border = true },
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+				callback = function()
+					vim.b.miniindentscope_disable = true
+				end,
+			})
+		end,
+		config = function(_, opts)
+			require("mini.indentscope").setup(opts)
+		end,
+	},
 }

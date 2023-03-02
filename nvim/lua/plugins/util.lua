@@ -32,29 +32,101 @@ return {
 		end,
 	},
 	{
-		"numToStr/Comment.nvim",
-		config = true,
+		"ggandor/flit.nvim",
+		keys = function()
+			local ret = {}
+			for _, key in ipairs({ "f", "F", "t", "T" }) do
+				ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
+			end
+			return ret
+		end,
+		opts = { labeled_modes = "nx" },
+	},
+	{
+		"echasnovski/mini.comment",
+		event = "VeryLazy",
+		config = function()
+			require("mini.comment").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.surround",
+		keys = function(_, keys)
+			local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
+			local opts = require("lazy.core.plugin").values(plugin, "opts", false)
+			local mappings = {
+				{ opts.mappings.add, desc = "Add surrounding", mode = { "n", "v" } },
+				{ opts.mappings.delete, desc = "Delete surrounding" },
+				{ opts.mappings.find, desc = "Find right surrounding" },
+				{ opts.mappings.find_left, desc = "Find left surrounding" },
+				{ opts.mappings.highlight, desc = "Highlight surrounding" },
+				{ opts.mappings.replace, desc = "Replace surrounding" },
+				{ opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
+			}
+			mappings = vim.tbl_filter(function(m)
+				return m[1] and #m[1] > 0
+			end, mappings)
+			return vim.list_extend(mappings, keys)
+		end,
+		opts = {
+			mappings = {
+				add = "gza",
+				delete = "gzd",
+				find = "gzf",
+				find_left = "gzF",
+				highlight = "gzh",
+				replace = "gzr",
+				update_n_lines = "gzn",
+			},
+		},
+		config = function(_, opts)
+			require("mini.surround").setup(opts)
+		end,
+	},
+	{
+		"echasnovski/mini.ai",
+		event = "VeryLazy",
+		dependencies = { "nvim-treesitter-textobjects" },
+		opts = function()
+			local ai = require("mini.ai")
+			return {
+				n_lines = 500,
+				custom_textobjects = {
+					o = ai.gen_spec.treesitter({
+						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+					}, {}),
+					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
+					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+				},
+			}
+		end,
+		config = function(_, opts)
+			require("mini.ai").setup(opts)
+		end,
+	},
+	{
+		"echasnovski/mini.pairs",
+		event = "VeryLazy",
+		config = function(_, opts)
+			require("mini.pairs").setup(opts)
+		end,
 	},
 	{
 		"ojroques/vim-oscyank",
 		cmd = { "OSCYank", "OSCYankReg" },
 		keys = {
-			{ "<leader><leader>y", "<Plug>OSCYank", desc = "OSCYank" },
+			{ "<leader>Y", "<Plug>OSCYank", desc = "OSCYank" },
 			{ "<leader>y", "<cmd>OSCYank<cr>", mode = { "v" }, desc = "OSCYank" },
 			{ "<leader>y", "<cmd>OSCYankReg +<cr>", desc = "OSCYankReg" },
 		},
-	},
-	{
-		"kylechui/nvim-surround",
-		version = "*",
-		config = true,
 	},
 	{
 		"sindrets/diffview.nvim",
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 		keys = {
 			{ "<leader>v", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
-			{ "<leader><leader>v", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
+			{ "<leader>V", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
 			{ "<leader>h", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory" },
 			{
 				"<leader>h",
@@ -62,17 +134,8 @@ return {
 				mode = { "v" },
 				desc = "DiffviewFileHistory",
 			},
-			{ "<leader><leader>h", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory" },
+			{ "<leader>H", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory" },
 		},
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
-		keys = {
-			{ "<leader>t", "<cmd>NvimTreeToggle<cr>", desc = "NvimTreeToggle" },
-			{ "<leader><leader>t", "<cmd>NvimTreeFindFile<cr>", desc = "NvimTreeFindFile" },
-		},
-		config = true,
 	},
 	{
 		"ruifm/gitlinker.nvim",
@@ -121,6 +184,14 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
+			signs = {
+				add = { text = "▎" },
+				change = { text = "▎" },
+				delete = { text = "" },
+				topdelete = { text = "" },
+				changedelete = { text = "▎" },
+				untracked = { text = "▎" },
+			},
 			preview_config = { border = "single" },
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
@@ -158,7 +229,7 @@ return {
 				set("n", "<leader>z", function()
 					gs.blame_line({ full = false })
 				end, { desc = "Gitsigns blame_line" })
-				set("n", "<leader><leader>z", function()
+				set("n", "<leader>Z", function()
 					gs.blame_line({ full = true })
 				end, { desc = "Gitsigns blame_line full" })
 				set({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<cr>", { desc = "Gitsigns select_hunk" })

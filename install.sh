@@ -27,6 +27,7 @@ else
 	sudo apt install -y \
 		tmux \
 		neovim \
+        git \
 		httpie \
 		python3-venv \
 		mtr \

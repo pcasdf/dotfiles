@@ -15,14 +15,14 @@ return {
 			{ "<leader>r", "<cmd>Telescope resume<cr>", desc = "Telescope resume" },
 			{ "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Telescope find_files" },
 			{
-				"<leader><leader>f",
+				"<leader>F",
 				function()
 					require("telescope.builtin").find_files({ cwd = require("telescope.utils").buffer_dir() })
 				end,
 				desc = "Telescope find_files from current buffer",
 			},
 			{
-				"<leader><leader>g",
+				"<leader>G",
 				function()
 					require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
 				end,
@@ -31,7 +31,7 @@ return {
 			{ "<leader>a", "<cmd>Telescope git_files<cr>", desc = "Telescope git_files" },
 			{ "<leader>e", "<cmd>Telescope file_browser file_browser<cr>", desc = "Telescope file_browser" },
 			{
-				"<leader><leader>e",
+				"<leader>E",
 				function()
 					require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", select_buffer = true })
 				end,
@@ -62,9 +62,9 @@ return {
 			{ "<leader>k", "<cmd> Telescope keymaps<cr>", desc = "Telescope keymaps" },
 			{ "<leader>u", "<cmd> Telescope builtin<cr>", desc = "Telescope builtin" },
 			{ "<leader>b", "<cmd> Telescope buffers<cr>", desc = "Telescope buffers" },
-			{ "<leader><leader>m", "<cmd> Telescope marks<cr>", desc = "Telescope marks" },
+			{ "<leader>M", "<cmd> Telescope marks<cr>", desc = "Telescope marks" },
 			{ "<leader>m", "<cmd> Telescope oldfiles<cr>", desc = "Telescope oldfiles" },
-			{ "<leader><leader>x", "<cmd> Telescope command_history<cr>", desc = "Telescope command_history" },
+			{ "<leader>X", "<cmd> Telescope command_history<cr>", desc = "Telescope command_history" },
 			{
 				"<leader>d",
 				function()
@@ -72,9 +72,9 @@ return {
 				end,
 				desc = "Telescope diagnostics current buffer",
 			},
-			{ "<leader><leader>d", "<cmd> Telescope diagnostics<cr>", desc = "Telescope diagnostics" },
+			{ "<leader>D", "<cmd> Telescope diagnostics<cr>", desc = "Telescope diagnostics" },
 			{ "<leader>q", "<cmd> Telescope quickfix<cr>", desc = "Telescope quickfix" },
-			{ "<leader><leader>q", "<cmd> Telescope quickfixhistory<cr>", desc = "Telescope quickfixhistory" },
+			{ "<leader>Q", "<cmd> Telescope quickfixhistory<cr>", desc = "Telescope quickfixhistory" },
 			{ "gD", "<cmd> Telescope lsp_definitions<cr>", desc = "Telescope lsp_definitions" },
 			{ "gr", "<cmd> Telescope lsp_references<cr>", desc = "Telescope lsp_references" },
 			{
@@ -83,21 +83,21 @@ return {
 				desc = "Telescope lsp_document_symbols",
 			},
 			{
-				"<leader><leader>s",
+				"<leader>S",
 				"<cmd> Telescope lsp_workspace_symbols<cr>",
 				desc = "Telescope lsp_workspace_symbols",
 			},
 			{
-				"<leader><leader>u",
+				"<leader>U",
 				"<cmd> Telescope lsp_type_definitions<cr>",
 				desc = "Telescope lsp_type_definitions",
 			},
-			{ "<leader><leader>a", "<cmd> Telescope git_status<cr>", desc = "Telescope git_status" },
-			{ "<leader><leader>c", "<cmd> Telescope git_commits<cr>", desc = "Telescope git_commits" },
+			{ "<leader>A", "<cmd> Telescope git_status<cr>", desc = "Telescope git_status" },
+			{ "<leader>C", "<cmd> Telescope git_commits<cr>", desc = "Telescope git_commits" },
 			{ "<leader>c", "<cmd> Telescope git_bcommits<cr>", desc = "Telescope git_bcommits" },
-			{ "<leader><leader>b", "<cmd> Telescope git_branches<cr>", desc = "telescope git_branches" },
+			{ "<leader>B", "<cmd> Telescope git_branches<cr>", desc = "Telescope git_branches" },
 			{
-				"<leader><leader>k",
+				"<leader>K",
 				function()
 					require("telescope.builtin").find_files({ cwd = "$HOME/dotfiles/nvim", prompt_title = "dotfiles" })
 				end,
@@ -109,6 +109,8 @@ return {
 
 			return {
 				defaults = {
+					prompt_prefix = " ",
+					selection_caret = " ",
 					winblend = 12,
 					mappings = {
 						i = {
