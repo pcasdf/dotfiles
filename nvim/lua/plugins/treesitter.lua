@@ -7,7 +7,6 @@ return {
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
 				init = function()
-					-- PERF: no need to load the plugin, if we only need its queries for mini.ai
 					local plugin = require("lazy.core.config").spec.plugins["nvim-treesitter"]
 					local opts = require("lazy.core.plugin").values(plugin, "opts", false)
 					local enabled = false
@@ -94,12 +93,8 @@ return {
 						["ic"] = "@class.inner",
 						["aa"] = "@parameter.outer",
 						["ia"] = "@parameter.inner",
-						["aC"] = "@comment.outer",
-						["iC"] = "@comment.inner",
-						["ai"] = "@conditional.outer",
-						["ii"] = "@conditional.inner",
-						["ab"] = "@block.outer",
-						["ib"] = "@block.inner",
+						["an"] = "@comment.outer",
+						["in"] = "@comment.inner",
 						["ax"] = "@call.outer",
 						["ix"] = "@call.inner",
 					},
@@ -109,42 +104,36 @@ return {
 					set_jumps = true,
 					goto_next_start = {
 						["]f"] = "@function.outer",
-						["]]"] = "@class.outer",
-						["]C"] = "@comment.outer",
-						["]B"] = "@block.outer",
+						["]c"] = "@class.outer",
+						["]n"] = "@comment.outer",
 						["]x"] = "@call.outer",
-						["]i"] = "@conditional.outer",
 						["]a"] = "@parameter.inner",
 					},
 					goto_next_end = {
 						["]F"] = "@function.outer",
-						["]["] = "@class.outer",
-						["]I"] = "@conditional.outer",
+						["]C"] = "@class.outer",
 						["]e"] = "@parameter.inner",
 					},
 					goto_previous_start = {
 						["[f"] = "@function.outer",
-						["[["] = "@class.outer",
-						["[C"] = "@comment.outer",
-						["[B"] = "@block.outer",
+						["[c"] = "@class.outer",
+						["[n"] = "@comment.outer",
 						["[x"] = "@call.outer",
-						["[i"] = "@conditional.outer",
 						["[a"] = "@parameter.inner",
 					},
 					goto_previous_end = {
 						["[F"] = "@function.outer",
-						["[]"] = "@class.outer",
-						["[I"] = "@conditional.outer",
+						["[C"] = "@class.outer",
 						["[e"] = "@parameter.inner",
 					},
 				},
 				swap = {
 					enable = true,
 					swap_next = {
-						["<leader>n"] = "@parameter.inner",
+						["]s"] = "@parameter.inner",
 					},
 					swap_previous = {
-						["<leader>N"] = "@parameter.inner",
+						["[s"] = "@parameter.inner",
 					},
 				},
 			},

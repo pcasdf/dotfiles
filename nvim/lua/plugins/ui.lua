@@ -94,89 +94,27 @@ return {
 		},
 	},
 	{
-		"glepnir/lspsaga.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		branch = "main",
-		dependencies = {
-			"nvim-web-devicons",
-			"nvim-treesitter",
-		},
-		keys = {
-			{ "gh", "<cmd>Lspsaga lsp_finder<CR>", desc = "Lspsaga lsp_finder" },
-			{
-				"<leader>x",
-				"<cmd>Lspsaga code_action<CR>",
-				mode = { "n", "v" },
-				desc = "Lspsaga code_action",
-			},
-			{ "<leader>R", "<cmd>Lspsaga rename<CR>", desc = "Lspsaga rename" },
-			{ "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Lspsaga goto_definition" },
-			{ "<M-d>", "<cmd>Lspsaga peek_definition<CR>", desc = "Lspsaga peek_definition" },
-			{ "<M-t>", "<cmd>Lspsaga peek_type_definition<CR>", desc = "Lspsaga peek_type_definition" },
-			{ "gt", "<cmd>Lspsaga goto_type_definition<CR>", desc = "Lspsaga goto_type_definition" },
-			{ "<leader>l", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Lspsaga show_line_diagnostics" },
-			{
-				"<leader>I",
-				"<cmd>Lspsaga show_cursor_diagnostics<CR>",
-				desc = "Lspsaga show_cursor_diagnostics",
-			},
-			{ "<leader>w", "<cmd>Lspsaga show_buf_diagnostics<CR>", desc = "Lspsaga show_buf_diagnostics" },
-			{ "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Lspsaga diagnostic_jump_prev" },
-			{ "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Lspsaga diagnostic_jump_next" },
-			{
-				"[D",
-				function()
-					require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-				end,
-				desc = "Lspsaga goto_prev error",
-			},
-			{
-				"]D",
-				function()
-					require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-				end,
-				desc = "Lspsaga goto_next error",
-			},
-			{ "<leader>O", "<cmd>Lspsaga outline<CR>", desc = "Lspsaga outline" },
-			{ "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Lspsaga hover_doc" },
-		},
-		opts = {
-			lightbulb = { enable = false },
-			symbol_in_winbar = { separator = "  " },
-			beacon = { frequency = 10 },
-			definition = {
-				edit = "<C-w>o",
-				vsplit = "<C-w>v",
-				split = "<C-w>s",
-				tabe = "<C-t>",
-				quit = "q",
-			},
-			finder = {
-				keys = { vsplit = "v", split = "s" },
-			},
-			ui = { winblend = 12 },
-		},
-	},
-	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		cmd = "Neotree",
 		keys = {
 			{
-				"<leader>t",
+				"<leader>nt",
 				function()
 					require("neo-tree.command").execute({ toggle = true })
 				end,
-				desc = "Explorer NeoTree (root dir)",
+				desc = "Neotree (root)",
 			},
 			{
-				"<leader>T",
+				"<leader>nf",
 				function()
 					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
 				end,
-				desc = "Explorer NeoTree (cwd)",
+				desc = "Neotree (cwd)",
 			},
+			{ "<leader>nb", "<cmd>Neotree buffers<cr>", desc = "Neotree buffers" },
+			{ "<leader>ng", "<cmd>Neotree git_status<cr>", desc = "Neotree git_status" },
 		},
 		deactivate = function()
 			vim.cmd([[Neotree close]])
@@ -207,15 +145,20 @@ return {
 		"echasnovski/mini.indentscope",
 		version = false,
 		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			symbol = "│",
-			options = { try_as_border = true },
-		},
+		opts = { symbol = "│" },
 		init = function()
 			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+				pattern = { "help", "neo-tree", "lazy", "mason" },
 				callback = function()
 					vim.b.miniindentscope_disable = true
+				end,
+			})
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "python", "yaml" },
+				callback = function()
+					vim.b.miniindentscope_config = {
+						options = { border = "top" },
+					}
 				end,
 			})
 		end,

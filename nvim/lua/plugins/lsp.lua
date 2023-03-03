@@ -46,17 +46,31 @@ return {
 
 			vim.diagnostic.config(opts.diagnostics)
 
+			local lsp_formatting = function(bufnr)
+				vim.lsp.buf.format({
+					filter = function(client)
+						return client.name == "null-ls"
+					end,
+					bufnr = bufnr,
+				})
+			end
+
 			local on_attach = function(client, bufnr)
 				local buf = vim.lsp.buf
 				local diagnostic = vim.diagnostic
-				local bufopts = { noremap = true, silent = true, buffer = bufnr }
+				local with = function(options)
+					options.noremap = true
+					options.silent = true
+					options.buffer = bufnr
+					return options
+				end
 
-				set("n", "<leader>L", diagnostic.setloclist, bufopts)
-				set("n", "gR", buf.references, bufopts)
-				set("i", "<C-l>", buf.signature_help, bufopts)
-				set("n", "<C-_>", function()
-					buf.format({ async = true })
-				end, bufopts)
+				set("n", "<leader>ls", diagnostic.setloclist, with({ desc = "Lsp diagnostic setloclist" }))
+				set("n", "gR", buf.references, with({ desc = "Lsp references" }))
+				set("i", "<C-l>", buf.signature_help, with({ desc = "Lsp signature_help" }))
+				set("n", "<leader>lf", function()
+					lsp_formatting(bufnr)
+				end, with({ desc = "Lsp format" }))
 			end
 
 			local function get_extra_paths()
@@ -189,10 +203,72 @@ return {
 		end,
 	},
 	{
+		"glepnir/lspsaga.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		branch = "main",
+		dependencies = {
+			"nvim-web-devicons",
+			"nvim-treesitter",
+		},
+		keys = {
+			{ "gh", "<cmd>Lspsaga lsp_finder<CR>", desc = "Lspsaga lsp_finder" },
+			{
+				"<leader>la",
+				"<cmd>Lspsaga code_action<CR>",
+				mode = { "n", "v" },
+				desc = "Lspsaga code_action",
+			},
+			{ "<leader>lr", "<cmd>Lspsaga rename<CR>", desc = "Lspsaga rename" },
+			{ "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", desc = "Lspsaga peek_definition" },
+			{ "<leader>lt", "<cmd>Lspsaga peek_type_definition<CR>", desc = "Lspsaga peek_type_definition" },
+			{ "<leader>ll", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Lspsaga show_line_diagnostics" },
+			{
+				"<leader>lc",
+				"<cmd>Lspsaga show_cursor_diagnostics<CR>",
+				desc = "Lspsaga show_cursor_diagnostics",
+			},
+			{ "<leader>lb", "<cmd>Lspsaga show_buf_diagnostics<CR>", desc = "Lspsaga show_buf_diagnostics" },
+			{ "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Lspsaga diagnostic_jump_prev" },
+			{ "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Lspsaga diagnostic_jump_next" },
+			{
+				"[D",
+				function()
+					require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+				end,
+				desc = "Lspsaga goto_prev error",
+			},
+			{
+				"]D",
+				function()
+					require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+				end,
+				desc = "Lspsaga goto_next error",
+			},
+			{ "<leader>lo", "<cmd>Lspsaga outline<CR>", desc = "Lspsaga outline" },
+			{ "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Lspsaga hover_doc" },
+		},
+		opts = {
+			lightbulb = { enable = false },
+			symbol_in_winbar = { separator = "  " },
+			beacon = { enable = false },
+			definition = {
+				edit = "<C-w>o",
+				vsplit = "<C-w>v",
+				split = "<C-w>s",
+				tabe = "<C-t>",
+				quit = "q",
+			},
+			finder = {
+				keys = { vsplit = "v", split = "s" },
+			},
+			ui = { winblend = 12 },
+		},
+	},
+	{
 		"simrat39/symbols-outline.nvim",
 		cmd = { "SymbolsOutline" },
 		keys = {
-			{ "<leader>o", "<cmd>SymbolsOutline<cr>", desc = "SymbolsOutline" },
+			{ "<leader>so", "<cmd>SymbolsOutline<cr>", desc = "SymbolsOutline" },
 		},
 		config = true,
 	},

@@ -103,47 +103,79 @@ return {
 		end,
 		config = function(_, opts)
 			require("mini.ai").setup(opts)
-		end,
-	},
-	{
-		"echasnovski/mini.pairs",
-		event = "VeryLazy",
-		config = function(_, opts)
-			require("mini.pairs").setup(opts)
+			local i = {
+				[" "] = "Whitespace",
+				['"'] = 'Balanced "',
+				["'"] = "Balanced '",
+				["`"] = "Balanced `",
+				["("] = "Balanced (",
+				[")"] = "Balanced ) including white-space",
+				[">"] = "Balanced > including white-space",
+				["<lt>"] = "Balanced <",
+				["]"] = "Balanced ] including white-space",
+				["["] = "Balanced [",
+				["}"] = "Balanced } including white-space",
+				["{"] = "Balanced {",
+				["?"] = "User Prompt",
+				_ = "Underscore",
+				a = "Argument",
+				b = "Balanced ), ], }",
+				c = "Class",
+				f = "Function",
+				o = "Block, conditional, loop",
+				q = "Quote `, \", '",
+				t = "Tag",
+			}
+			local a = vim.deepcopy(i)
+			for k, v in pairs(a) do
+				a[k] = v:gsub(" including.*", "")
+			end
+
+			local ic = vim.deepcopy(i)
+			local ac = vim.deepcopy(a)
+			for key, name in pairs({ n = "Next", l = "Last" }) do
+				i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+				a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+			end
+			require("which-key").register({
+				mode = { "o", "x" },
+				i = i,
+				a = a,
+			})
 		end,
 	},
 	{
 		"ojroques/vim-oscyank",
 		cmd = { "OSCYank", "OSCYankReg" },
 		keys = {
-			{ "<leader>Y", "<Plug>OSCYank", desc = "OSCYank" },
-			{ "<leader>y", "<cmd>OSCYank<cr>", mode = { "v" }, desc = "OSCYank" },
-			{ "<leader>y", "<cmd>OSCYankReg +<cr>", desc = "OSCYankReg" },
+			{ "<leader>yy", "<Plug>OSCYank", desc = "OSCYank" },
+			{ "<leader>yy", "<cmd>OSCYank<cr>", mode = { "v" }, desc = "OSCYank" },
+			{ "<leader>yr", "<cmd>OSCYankReg +<cr>", desc = "OSCYankReg" },
 		},
 	},
 	{
 		"sindrets/diffview.nvim",
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 		keys = {
-			{ "<leader>v", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
-			{ "<leader>V", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
-			{ "<leader>h", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory" },
+			{ "<leader>dv", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
+			{ "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
+			{ "<leader>db", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory (current file)" },
 			{
-				"<leader>h",
+				"<leader>dv",
 				"<cmd>'<,'>DiffviewFileHistory<cr>",
 				mode = { "v" },
 				desc = "DiffviewFileHistory",
 			},
-			{ "<leader>H", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory" },
+			{ "<leader>dh", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory (all)" },
 		},
 	},
 	{
 		"ruifm/gitlinker.nvim",
 		keys = function()
 			return {
-				{ "<M-l>", desc = "Gitlinker" },
+				{ "<leader>gl", desc = "Gitlinker get_github_type_url" },
 				{
-					"<M-o>",
+					"<leader>go",
 					function()
 						require("gitlinker").get_buf_range_url(
 							"n",
@@ -153,7 +185,7 @@ return {
 					desc = "Gitlinker open_in_browser",
 				},
 				{
-					"<M-o>",
+					"<leader>go",
 					function()
 						require("gitlinker").get_buf_range_url(
 							"v",
@@ -176,7 +208,7 @@ return {
 				callbacks = {
 					["github.com"] = require("gitlinker.hosts").get_github_type_url,
 				},
-				mappings = "<M-l>",
+				mappings = "<leader>gl",
 			}
 		end,
 	},
@@ -220,20 +252,104 @@ return {
 					end)
 					return "<Ignore>"
 				end, { expr = true, desc = "Prev hunk" })
-				set({ "n", "v" }, "<M-s>", ":Gitsigns stage_hunk<cr>", { desc = "Gitsigns stage_hunk" })
-				set("n", "<M-u>", gs.undo_stage_hunk, { desc = "Gitsigns undo_stage_hunk" })
-				set({ "n", "v" }, "<M-r>", ":Gitsigns reset_hunk<cr>", { desc = "Gitsigns reset_hunk" })
-				set("n", "<M-a>", gs.stage_buffer, { desc = "Gitsigns stage_buffer" })
-				set("n", "<M-b>", gs.reset_buffer, { desc = "Gitsigns reset_buffer" })
-				set("n", "<leader>p", gs.preview_hunk, { desc = "Gitsigns preview_hunk" })
-				set("n", "<leader>z", function()
+				set({ "n", "v" }, "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Gitsigns stage_hunk" })
+				set("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Gitsigns undo_stage_hunk" })
+				set({ "n", "v" }, "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Gitsigns reset_hunk" })
+				set("n", "<leader>hS", gs.stage_buffer, { desc = "Gitsigns stage_buffer" })
+				set("n", "<leader>hR", gs.reset_buffer, { desc = "Gitsigns reset_buffer" })
+				set("n", "<leader>hp", gs.preview_hunk, { desc = "Gitsigns preview_hunk" })
+				set(
+					"n",
+					"<leader>hi",
+					"<cmd>Gitsigns preview_hunk_inline<cr>",
+					{ desc = "Gitsigns preview_hunk_inline" }
+				)
+				set("n", "<leader>hb", function()
 					gs.blame_line({ full = false })
 				end, { desc = "Gitsigns blame_line" })
-				set("n", "<leader>Z", function()
+				set("n", "<leader>hB", function()
 					gs.blame_line({ full = true })
 				end, { desc = "Gitsigns blame_line full" })
-				set({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<cr>", { desc = "Gitsigns select_hunk" })
+				set({ "o", "x" }, "ih", "<cmd>Gitsigns select_hunk<cr>", { desc = "Gitsigns select_hunk" })
+				set("n", "<leader>hq", "<cmd>Gitsigns setqflist<cr>", { desc = "Gitsigns setqflist" })
+				set(
+					"n",
+					"<leader>ht",
+					"<cmd>Gitsigns toggle_current_line_blame<cr>",
+					{ desc = "Gitsigns toggle_current_line_blame" }
+				)
 			end,
+		},
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			plugins = { spelling = true },
+			triggers_nowait = {},
+			triggers_blacklist = {
+				n = { "j", "k", '"' },
+				i = { "j", "k" },
+				x = { '"' },
+			},
+		},
+		config = function(_, opts)
+			local wk = require("which-key")
+			wk.setup(opts)
+			local keymaps = {
+				mode = { "n", "v" },
+				["g"] = { name = "+goto" },
+				["gz"] = { name = "+surround" },
+				["]"] = { name = "+next" },
+				["["] = { name = "+prev" },
+				["<leader>b"] = { name = "+buffer" },
+				["<leader>d"] = { name = "+diff" },
+				["<leader>f"] = { name = "+find" },
+				["<leader>g"] = { name = "+git" },
+				["<leader>h"] = { name = "+hunks" },
+				["<leader>l"] = { name = "+lsp" },
+				["<leader>n"] = { name = "+tree" },
+				["<leader>o"] = { name = "+open" },
+				["<leader>p"] = { name = "+plugins" },
+				["<leader>q"] = { name = "+quit" },
+				["<leader>s"] = { name = "+symbols" },
+				["<leader>w"] = { name = "+write" },
+				["<leader>y"] = { name = "+yank" },
+			}
+			wk.register(keymaps)
+		end,
+	},
+	{
+		"RRethy/vim-illuminate",
+		event = { "BufReadPost", "BufNewFile" },
+		opts = { delay = 200 },
+		config = function(_, opts)
+			vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#3b3f4c" })
+			vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#3b3f4c" })
+			vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#3b3f4c" })
+
+			require("illuminate").configure(opts)
+
+			local function map(key, dir, buffer)
+				vim.keymap.set("n", key, function()
+					require("illuminate")["goto_" .. dir .. "_reference"](false)
+				end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+			end
+
+			map("]]", "next")
+			map("[[", "prev")
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					local buffer = vim.api.nvim_get_current_buf()
+					map("]]", "next", buffer)
+					map("[[", "prev", buffer)
+				end,
+			})
+		end,
+		keys = {
+			{ "]]", desc = "Next Reference" },
+			{ "[[", desc = "Prev Reference" },
 		},
 	},
 }

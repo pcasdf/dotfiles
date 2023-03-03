@@ -12,92 +12,98 @@ return {
 			"nvim-telescope/telescope-file-browser.nvim",
 		},
 		keys = {
-			{ "<leader>r", "<cmd>Telescope resume<cr>", desc = "Telescope resume" },
-			{ "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Telescope find_files" },
+			{ "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Telescope resume" },
+			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find_files" },
 			{
-				"<leader>F",
+				"<leader>fF",
 				function()
 					require("telescope.builtin").find_files({ cwd = require("telescope.utils").buffer_dir() })
 				end,
-				desc = "Telescope find_files from current buffer",
+				desc = "Telescope find_files (cwd)",
 			},
 			{
-				"<leader>G",
+				"<leader>fh",
 				function()
 					require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
 				end,
-				desc = "Telescope find_files hidden ignored",
+				desc = "Telescope find_files (hidden)",
 			},
-			{ "<leader>a", "<cmd>Telescope git_files<cr>", desc = "Telescope git_files" },
-			{ "<leader>e", "<cmd>Telescope file_browser file_browser<cr>", desc = "Telescope file_browser" },
+			{ "<leader>fa", "<cmd>Telescope git_files<cr>", desc = "Telescope git_files" },
+			{ "<leader>fe", "<cmd>Telescope file_browser file_browser<cr>", desc = "Telescope file_browser" },
 			{
-				"<leader>E",
+				"<leader>fE",
 				function()
-					require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", select_buffer = true })
+					require("telescope").extensions.file_browser.file_browser({
+						path = require("telescope.utils").buffer_dir(),
+					})
 				end,
-				desc = "Telescope file_browser from current buffer",
+				desc = "Telescope file_browser (cwd)",
 			},
 			{
-				"<M-e>",
+				"<leader>fH",
 				function()
 					require("telescope").extensions.file_browser.file_browser({
 						hidden = true,
 						respect_gitignore = false,
 					})
 				end,
-				desc = "Telescope file_browser hidden and ignored",
+				desc = "Telescope file_browser (hidden)",
+			},
+			{ "<leader>fw", "<cmd>Telescope grep_string<cr>", mode = { "n", "v" }, desc = "Telescope grep_string" },
+			{
+				"<leader>fW",
+				function()
+					require("telescope.builtin").grep_string({ cwd = require("telescope.utils").buffer_dir() })
+				end,
+				desc = "Telescope grep_string (cwd)",
+			},
+			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live_grep" },
+			{
+				"<leader>fG",
+				function()
+					require("telescope.builtin").live_grep({ cwd = require("telescope.utils").buffer_dir() })
+				end,
+				desc = "Telescope live_grep (cwd)",
 			},
 			{
-				"gw",
-				"<cmd>Telescope grep_string<cr>",
-				mode = { "n", "v" },
-				desc = "Telescope grep_string",
-			},
-			{ "<leader>g", "<cmd>Telescope live_grep<cr>", desc = "Telescope live_grep" },
-			{
-				"<leader>/",
-				"<cmd> Telescope current_buffer_fuzzy_find<cr>",
+				"<leader>f/",
+				"<cmd>Telescope current_buffer_fuzzy_find<cr>",
 				desc = "Telescope current_buffer_fuzzy_find",
 			},
-			{ "<leader>k", "<cmd> Telescope keymaps<cr>", desc = "Telescope keymaps" },
-			{ "<leader>u", "<cmd> Telescope builtin<cr>", desc = "Telescope builtin" },
-			{ "<leader>b", "<cmd> Telescope buffers<cr>", desc = "Telescope buffers" },
-			{ "<leader>M", "<cmd> Telescope marks<cr>", desc = "Telescope marks" },
-			{ "<leader>m", "<cmd> Telescope oldfiles<cr>", desc = "Telescope oldfiles" },
-			{ "<leader>X", "<cmd> Telescope command_history<cr>", desc = "Telescope command_history" },
+			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Telescope keymaps" },
+			{ "<leader>fu", "<cmd>Telescope builtin<cr>", desc = "Telescope builtin" },
+			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
+			{ "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Telescope marks" },
+			{ "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Telescope oldfiles" },
+			{ "<leader>fx", "<cmd>Telescope command_history<cr>", desc = "Telescope command_history" },
 			{
-				"<leader>d",
+				"<leader>fd",
 				function()
 					require("telescope.builtin").diagnostics({ bufnr = 0 })
 				end,
-				desc = "Telescope diagnostics current buffer",
+				desc = "Telescope diagnostics (cwd)",
 			},
-			{ "<leader>D", "<cmd> Telescope diagnostics<cr>", desc = "Telescope diagnostics" },
-			{ "<leader>q", "<cmd> Telescope quickfix<cr>", desc = "Telescope quickfix" },
-			{ "<leader>Q", "<cmd> Telescope quickfixhistory<cr>", desc = "Telescope quickfixhistory" },
-			{ "gD", "<cmd> Telescope lsp_definitions<cr>", desc = "Telescope lsp_definitions" },
-			{ "gr", "<cmd> Telescope lsp_references<cr>", desc = "Telescope lsp_references" },
+			{ "<leader>fD", "<cmd>Telescope diagnostics<cr>", desc = "Telescope diagnostics" },
+			{ "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "Telescope quickfix" },
+			{ "<leader>fQ", "<cmd>Telescope quickfixhistory<cr>", desc = "Telescope quickfixhistory" },
+			{ "<leader>fl", "<cmd>Telescope loclist<cr>", desc = "Telescope loclist" },
+			{ "<leader>fj", "<cmd>Telescope jumplist<cr>", desc = "Telescope jumplist" },
+			{ "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Telescope lsp_definitions" },
+			{ "gr", "<cmd>Telescope lsp_references<cr>", desc = "Telescope lsp_references" },
+			{ "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Telescope lsp_type_definitions" },
+			{ "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Telescope lsp_document_symbols" },
 			{
-				"<leader>s",
-				"<cmd> Telescope lsp_document_symbols<cr>",
-				desc = "Telescope lsp_document_symbols",
+				"<leader>fS",
+				"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+				desc = "Telescope lsp_dynamic_workspace_symbols",
 			},
+			{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Telescope git_status" },
+			{ "<leader>gC", "<cmd>Telescope git_commits<cr>", desc = "Telescope git_commits" },
+			{ "<leader>gc", "<cmd>Telescope git_bcommits<cr>", desc = "Telescope git_bcommits" },
+			{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Telescope git_branches" },
+			{ "<leader>gS", "<cmd>Telescope git_stash<cr>", desc = "Telescope git_stash" },
 			{
-				"<leader>S",
-				"<cmd> Telescope lsp_workspace_symbols<cr>",
-				desc = "Telescope lsp_workspace_symbols",
-			},
-			{
-				"<leader>U",
-				"<cmd> Telescope lsp_type_definitions<cr>",
-				desc = "Telescope lsp_type_definitions",
-			},
-			{ "<leader>A", "<cmd> Telescope git_status<cr>", desc = "Telescope git_status" },
-			{ "<leader>C", "<cmd> Telescope git_commits<cr>", desc = "Telescope git_commits" },
-			{ "<leader>c", "<cmd> Telescope git_bcommits<cr>", desc = "Telescope git_bcommits" },
-			{ "<leader>B", "<cmd> Telescope git_branches<cr>", desc = "Telescope git_branches" },
-			{
-				"<leader>K",
+				"<leader>f.",
 				function()
 					require("telescope.builtin").find_files({ cwd = "$HOME/dotfiles/nvim", prompt_title = "dotfiles" })
 				end,
