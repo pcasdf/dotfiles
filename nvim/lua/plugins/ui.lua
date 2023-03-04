@@ -94,52 +94,13 @@ return {
 		},
 	},
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		cmd = "Neotree",
+		"nvim-tree/nvim-tree.lua",
+		cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
 		keys = {
-			{
-				"<leader>nt",
-				function()
-					require("neo-tree.command").execute({ toggle = true })
-				end,
-				desc = "Neotree (root)",
-			},
-			{
-				"<leader>nf",
-				function()
-					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-				end,
-				desc = "Neotree (cwd)",
-			},
-			{ "<leader>nb", "<cmd>Neotree buffers<cr>", desc = "Neotree buffers" },
-			{ "<leader>ng", "<cmd>Neotree git_status<cr>", desc = "Neotree git_status" },
+			{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree (root)" },
+			{ "<leader>nf", "<cmd>NvimTreeFindFile<cr>", desc = "NvimTree (cwd)" },
 		},
-		deactivate = function()
-			vim.cmd([[Neotree close]])
-		end,
-		init = function()
-			vim.g.neo_tree_remove_legacy_commands = 1
-			if vim.fn.argc() == 1 then
-				local stat = vim.loop.fs_stat(vim.fn.argv(0))
-				if stat and stat.type == "directory" then
-					require("neo-tree")
-				end
-			end
-		end,
-		opts = {
-			filesystem = {
-				bind_to_cwd = false,
-				follow_current_file = true,
-			},
-			window = {
-				width = 30,
-				mappings = {
-					["<space>"] = "none",
-				},
-			},
-		},
+		config = true,
 	},
 	{
 		"echasnovski/mini.indentscope",
