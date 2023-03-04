@@ -103,45 +103,6 @@ return {
 		end,
 		config = function(_, opts)
 			require("mini.ai").setup(opts)
-			local i = {
-				[" "] = "Whitespace",
-				['"'] = 'Balanced "',
-				["'"] = "Balanced '",
-				["`"] = "Balanced `",
-				["("] = "Balanced (",
-				[")"] = "Balanced ) including white-space",
-				[">"] = "Balanced > including white-space",
-				["<lt>"] = "Balanced <",
-				["]"] = "Balanced ] including white-space",
-				["["] = "Balanced [",
-				["}"] = "Balanced } including white-space",
-				["{"] = "Balanced {",
-				["?"] = "User Prompt",
-				_ = "Underscore",
-				a = "Argument",
-				b = "Balanced ), ], }",
-				c = "Class",
-				f = "Function",
-				o = "Block, conditional, loop",
-				q = "Quote `, \", '",
-				t = "Tag",
-			}
-			local a = vim.deepcopy(i)
-			for k, v in pairs(a) do
-				a[k] = v:gsub(" including.*", "")
-			end
-
-			local ic = vim.deepcopy(i)
-			local ac = vim.deepcopy(a)
-			for key, name in pairs({ n = "Next", l = "Last" }) do
-				i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
-				a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
-			end
-			require("which-key").register({
-				mode = { "o", "x" },
-				i = i,
-				a = a,
-			})
 		end,
 	},
 	{
@@ -280,44 +241,6 @@ return {
 				)
 			end,
 		},
-	},
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		opts = {
-			plugins = { spelling = true },
-			triggers_nowait = {},
-			triggers_blacklist = {
-				n = { "j", "k", '"' },
-				i = { "j", "k" },
-				x = { '"' },
-			},
-		},
-		config = function(_, opts)
-			local wk = require("which-key")
-			wk.setup(opts)
-			local keymaps = {
-				mode = { "n", "v" },
-				["g"] = { name = "+goto" },
-				["gz"] = { name = "+surround" },
-				["]"] = { name = "+next" },
-				["["] = { name = "+prev" },
-				["<leader>b"] = { name = "+buffer" },
-				["<leader>d"] = { name = "+diff" },
-				["<leader>f"] = { name = "+find" },
-				["<leader>g"] = { name = "+git" },
-				["<leader>h"] = { name = "+hunks" },
-				["<leader>l"] = { name = "+lsp" },
-				["<leader>n"] = { name = "+tree" },
-				["<leader>o"] = { name = "+open" },
-				["<leader>p"] = { name = "+plugins" },
-				["<leader>q"] = { name = "+quit" },
-				["<leader>s"] = { name = "+symbols" },
-				["<leader>w"] = { name = "+write" },
-				["<leader>y"] = { name = "+yank" },
-			}
-			wk.register(keymaps)
-		end,
 	},
 	{
 		"RRethy/vim-illuminate",
