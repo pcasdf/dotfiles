@@ -96,8 +96,12 @@ return {
 						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
 						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
 					}, {}),
-					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
 					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+					f = ai.gen_spec.treesitter(
+						{ a = { "@call.outer", "@function.outer" }, i = { "@call.inner", "@function.inner" } },
+						{}
+					),
+					C = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }, {}),
 				},
 			}
 		end,
@@ -259,20 +263,12 @@ return {
 				end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
 			end
 
-			map("]]", "next")
-			map("[[", "prev")
-
-			vim.api.nvim_create_autocmd("FileType", {
-				callback = function()
-					local buffer = vim.api.nvim_get_current_buf()
-					map("]]", "next", buffer)
-					map("[[", "prev", buffer)
-				end,
-			})
+			map("]r", "next")
+			map("[r", "prev")
 		end,
 		keys = {
-			{ "]]", desc = "Next Reference" },
-			{ "[[", desc = "Prev Reference" },
+			{ "]r", desc = "Next Reference" },
+			{ "[r", desc = "Prev Reference" },
 		},
 	},
 }
