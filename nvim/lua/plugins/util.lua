@@ -122,16 +122,16 @@ return {
 		"sindrets/diffview.nvim",
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 		keys = {
-			{ "<leader>dv", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
+			{ "<leader>do", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
 			{ "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
-			{ "<leader>db", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory (current file)" },
+			{ "<leader>df", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory (current file)" },
 			{
-				"<leader>dv",
+				"<leader>dr",
 				"<cmd>'<,'>DiffviewFileHistory<cr>",
 				mode = { "v" },
 				desc = "DiffviewFileHistory",
 			},
-			{ "<leader>dh", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory (all)" },
+			{ "<leader>da", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory (all)" },
 		},
 	},
 	{
@@ -249,12 +249,21 @@ return {
 	{
 		"RRethy/vim-illuminate",
 		event = { "BufReadPost", "BufNewFile" },
-		opts = { delay = 200 },
+		opts = {
+			delay = 200,
+			filetypes_denylist = {
+				"help",
+				"qf",
+				"lazy",
+				"mason",
+				"NvimTree",
+				"DiffviewFiles",
+				"Outline",
+				"lspsagaoutline",
+			},
+			modes_denylist = { "v" },
+		},
 		config = function(_, opts)
-			vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#3b3f4c" })
-			vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#3b3f4c" })
-			vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#3b3f4c" })
-
 			require("illuminate").configure(opts)
 
 			local function map(key, dir, buffer)
@@ -270,5 +279,20 @@ return {
 			{ "]r", desc = "Next Reference" },
 			{ "[r", desc = "Prev Reference" },
 		},
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = "kevinhwang91/promise-async",
+		event = "BufReadPost",
+		opts = {},
+
+		init = function()
+			vim.keymap.set("n", "zR", function()
+				require("ufo").openAllFolds()
+			end)
+			vim.keymap.set("n", "zM", function()
+				require("ufo").closeAllFolds()
+			end)
+		end,
 	},
 }

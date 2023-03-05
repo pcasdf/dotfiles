@@ -12,7 +12,6 @@ return {
 			"nvim-telescope/telescope-file-browser.nvim",
 		},
 		keys = {
-			{ "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Telescope resume" },
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find_files" },
 			{
 				"<leader>fF",
@@ -20,42 +19,6 @@ return {
 					require("telescope.builtin").find_files({ cwd = require("telescope.utils").buffer_dir() })
 				end,
 				desc = "Telescope find_files (cwd)",
-			},
-			{
-				"<leader>fh",
-				function()
-					require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
-				end,
-				desc = "Telescope find_files (hidden)",
-			},
-			{ "<leader>fa", "<cmd>Telescope git_files<cr>", desc = "Telescope git_files" },
-			{ "<leader>fe", "<cmd>Telescope file_browser file_browser<cr>", desc = "Telescope file_browser" },
-			{
-				"<leader>fE",
-				function()
-					require("telescope").extensions.file_browser.file_browser({
-						path = require("telescope.utils").buffer_dir(),
-					})
-				end,
-				desc = "Telescope file_browser (cwd)",
-			},
-			{
-				"<leader>fH",
-				function()
-					require("telescope").extensions.file_browser.file_browser({
-						hidden = true,
-						respect_gitignore = false,
-					})
-				end,
-				desc = "Telescope file_browser (hidden)",
-			},
-			{ "<leader>fw", "<cmd>Telescope grep_string<cr>", mode = { "n", "v" }, desc = "Telescope grep_string" },
-			{
-				"<leader>fW",
-				function()
-					require("telescope.builtin").grep_string({ cwd = require("telescope.utils").buffer_dir() })
-				end,
-				desc = "Telescope grep_string (cwd)",
 			},
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live_grep" },
 			{
@@ -70,9 +33,47 @@ return {
 				"<cmd>Telescope current_buffer_fuzzy_find<cr>",
 				desc = "Telescope current_buffer_fuzzy_find",
 			},
+			{
+				"<leader>fh",
+				function()
+					require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+				end,
+				desc = "Telescope find_files (hidden)",
+			},
+			{
+				"<leader>fH",
+				function()
+					require("telescope").extensions.file_browser.file_browser({
+						hidden = true,
+						respect_gitignore = false,
+					})
+				end,
+				desc = "Telescope file_browser (hidden)",
+			},
+			{ "<leader>fa", "<cmd>Telescope git_files<cr>", desc = "Telescope git_files" },
+			{ "<leader>fe", "<cmd>Telescope file_browser file_browser<cr>", desc = "Telescope file_browser" },
+			{
+				"<leader>fE",
+				function()
+					require("telescope").extensions.file_browser.file_browser({
+						path = require("telescope.utils").buffer_dir(),
+					})
+				end,
+				desc = "Telescope file_browser (cwd)",
+			},
+			{ "<leader>fw", "<cmd>Telescope grep_string<cr>", mode = { "n", "v" }, desc = "Telescope grep_string" },
+			{
+				"<leader>fW",
+				function()
+					require("telescope.builtin").grep_string({ cwd = require("telescope.utils").buffer_dir() })
+				end,
+				desc = "Telescope grep_string (cwd)",
+			},
+			{ "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Telescope resume" },
+			{ "<leader>fR", "<cmd>Telescope registers<cr>", desc = "Telescope registers" },
 			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Telescope keymaps" },
-			{ "<leader>fu", "<cmd>Telescope builtin<cr>", desc = "Telescope builtin" },
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
+			{ "<leader>fB", "<cmd>Telescope builtin<cr>", desc = "Telescope builtin" },
 			{ "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Telescope marks" },
 			{ "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Telescope oldfiles" },
 			{ "<leader>fx", "<cmd>Telescope command_history<cr>", desc = "Telescope command_history" },
