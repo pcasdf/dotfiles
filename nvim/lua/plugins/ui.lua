@@ -138,4 +138,58 @@ return {
 			require("mini.indentscope").setup(opts)
 		end,
 	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = "kevinhwang91/promise-async",
+		event = "BufReadPost",
+		opts = {},
+		init = function()
+			vim.keymap.set("n", "zR", function()
+				require("ufo").openAllFolds()
+			end)
+			vim.keymap.set("n", "zM", function()
+				require("ufo").closeAllFolds()
+			end)
+			vim.keymap.set("n", "K", function()
+				local winid = require("ufo").peekFoldedLinesUnderCursor()
+				if not winid then
+					vim.cmd("Lspsaga hover_doc")
+				end
+			end)
+		end,
+	},
+	{
+		"RRethy/vim-illuminate",
+		event = { "BufReadPost", "BufNewFile" },
+		opts = {
+			delay = 200,
+			filetypes_denylist = {
+				"help",
+				"qf",
+				"lazy",
+				"mason",
+				"NvimTree",
+				"DiffviewFiles",
+				"Outline",
+				"lspsagaoutline",
+			},
+			modes_denylist = { "v" },
+		},
+		config = function(_, opts)
+			require("illuminate").configure(opts)
+
+			local function map(key, dir, buffer)
+				vim.keymap.set("n", key, function()
+					require("illuminate")["goto_" .. dir .. "_reference"](false)
+				end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+			end
+
+			map("]r", "next")
+			map("[r", "prev")
+		end,
+		keys = {
+			{ "]r", desc = "Next Reference" },
+			{ "[r", desc = "Prev Reference" },
+		},
+	},
 }
