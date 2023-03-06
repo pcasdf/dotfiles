@@ -96,11 +96,22 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
-		keys = {
-			{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree (root)" },
-			{ "<leader>nf", "<cmd>NvimTreeFindFile<cr>", desc = "NvimTree (cwd)" },
+		opts = {
+			update_focused_file = { enable = true },
 		},
-		config = true,
+		keys = {
+			{
+				"<leader>nt",
+				function()
+					require("nvim-tree.api").tree.toggle(false, true)
+				end,
+				desc = "NvimTree (root)",
+			},
+			{ "<leader>nf", "<cmd>NvimTreeFindFileToggle<cr>", desc = "NvimTree (cwd)" },
+		},
+		config = function(_, opts)
+			require("nvim-tree").setup(opts)
+		end,
 	},
 	{
 		"echasnovski/mini.indentscope",

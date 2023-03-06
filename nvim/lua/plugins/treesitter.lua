@@ -6,22 +6,10 @@ return {
 		dependencies = {
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
-				keys = function()
+				config = function()
 					local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-					return {
-						{
-							";",
-							ts_repeat_move.repeat_last_move,
-							mode = { "n", "x", "o" },
-							desc = "ts_repeat_move repeat_last_move",
-						},
-						{
-							",",
-							ts_repeat_move.repeat_last_move_opposite,
-							mode = { "n", "x", "o" },
-							desc = "ts_repeat_move repeat_last_move_opposite",
-						},
-					}
+					vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+					vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
 				end,
 			},
 		},

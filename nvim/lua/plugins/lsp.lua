@@ -125,6 +125,10 @@ return {
 			}
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
 
 			for lsp, options in pairs(servers) do
 				options["on_attach"] = on_attach
@@ -245,7 +249,7 @@ return {
 				desc = "Lspsaga goto_next error",
 			},
 			{ "<leader>lo", "<cmd>Lspsaga outline<CR>", desc = "Lspsaga outline" },
-			{ "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Lspsaga hover_doc" },
+			-- { "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Lspsaga hover_doc" },
 		},
 		opts = {
 			lightbulb = { enable = false },

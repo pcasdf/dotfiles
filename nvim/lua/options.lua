@@ -43,7 +43,9 @@ opt.joinspaces = false
 opt.fillchars = { eob = " " }
 opt.termguicolors = true
 opt.diffopt = { "internal", "filler", "closeoff", "hiddenoff", "algorithm:minimal" }
-opt.foldmethod = "indent"
 opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
+opt.foldcolumn = "0"
 opt.grepprg = "rg --vimgrep --smart-case"
 opt.grepformat = "%f:%l:%c:%m"
