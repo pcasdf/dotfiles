@@ -45,7 +45,7 @@ set("n", "<leader>yf", '<cmd>let @+=expand("%:~:.")<cr>', { desc = "Yank relativ
 set("n", "<leader>ya", '<cmd>let @+=expand("%:p")<cr>', { desc = "Yank absolute file path" })
 
 set("n", "<leader>om", "<cmd>Mason<cr>", { desc = "Open Mason" })
-set("n", "<leader>oz", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
+set("n", "<leader>ol", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 set("n", "<leader>on", "<cmd>NullLsInfo<cr>", { desc = "Open Null" })
 set("n", "<leader>oi", "<cmd>LspInfo<cr>", { desc = "Open Lsp" })
 

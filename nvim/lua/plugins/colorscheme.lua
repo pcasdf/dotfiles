@@ -5,6 +5,7 @@ return {
 			local c = require("onenord.colors").load()
 			return {
 				custom_highlights = {
+					DiffDelete = { fg = c.diff_remove_bg },
 					FloatBorder = { bg = "none" },
 					FocusedSymbol = { fg = c.yellow, style = "italic" },
 					IlluminatedWordText = { bg = c.highlight },

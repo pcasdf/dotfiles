@@ -133,6 +133,13 @@ return {
 			},
 			{ "<leader>da", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory (all)" },
 		},
+		opts = {
+			hooks = {
+				diff_buf_read = function()
+					vim.opt_local.cursorline = false
+				end,
+			},
+		},
 	},
 	{
 		"ruifm/gitlinker.nvim",
