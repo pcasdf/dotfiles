@@ -252,6 +252,7 @@ return {
 			-- { "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Lspsaga hover_doc" },
 		},
 		opts = {
+			ui = { winblend = 12 },
 			lightbulb = { enable = false },
 			symbol_in_winbar = { separator = "  " },
 			beacon = { enable = false },
@@ -265,7 +266,6 @@ return {
 			finder = {
 				keys = { vsplit = "v", split = "s" },
 			},
-			ui = { winblend = 12 },
 		},
 	},
 	{

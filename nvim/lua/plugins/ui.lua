@@ -120,7 +120,17 @@ return {
 		opts = { symbol = "│" },
 		init = function()
 			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "help", "qf", "lazy", "mason", "NvimTree", "DiffviewFiles", "Outline", "lspsagaoutline" },
+				pattern = {
+					"help",
+					"qf",
+					"lazy",
+					"mason",
+					"NvimTree",
+					"DiffviewFiles",
+					"Outline",
+					"lspsagafinder",
+					"lspsagaoutline",
+				},
 				callback = function()
 					vim.b.miniindentscope_disable = true
 				end,
@@ -171,6 +181,7 @@ return {
 				"NvimTree",
 				"DiffviewFiles",
 				"Outline",
+				"lspsagafinder",
 				"lspsagaoutline",
 			},
 			modes_denylist = { "v" },

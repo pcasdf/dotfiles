@@ -61,7 +61,12 @@ return {
 				end,
 				desc = "Telescope file_browser (cwd)",
 			},
-			{ "<leader>fw", "<cmd>Telescope grep_string<cr>", mode = { "n", "v" }, desc = "Telescope grep_string" },
+			{
+				"<leader>fw",
+				"<cmd>Telescope grep_string<cr>",
+				mode = { "n", "v" },
+				desc = "Telescope grep_string",
+			},
 			{
 				"<leader>fW",
 				function()

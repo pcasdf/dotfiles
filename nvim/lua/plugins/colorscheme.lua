@@ -1,23 +1,31 @@
 return {
 	{
-		"navarasu/onedark.nvim",
+		"rmehri01/onenord.nvim",
 		opts = function()
-			local p = require("onedark.palette").darker
+			local c = require("onenord.colors").load()
 			return {
-				style = "darker",
-				highlights = {
+				custom_highlights = {
 					FloatBorder = { bg = "none" },
-					NormalFloat = { bg = "none" },
-					QuickFixLine = { bg = p.bg2, fmt = "bold,italic" },
-					IlluminatedWordText = { bg = p.bg2 },
-					IlluminatedWordRead = { bg = p.bg2 },
-					IlluminatedWordWrite = { bg = p.bg2 },
+					FocusedSymbol = { fg = c.yellow, style = "italic" },
+					IlluminatedWordText = { bg = c.highlight },
+					IlluminatedWordRead = { bg = c.highlight },
+					IlluminatedWordWrite = { bg = c.highlight },
+					LeapMatch = { fg = c.bg, bg = c.yellow },
+					LeapLabelPrimary = { fg = c.bg, bg = c.yellow },
+					LeapLabelSelected = { fg = c.bg, bg = c.highlight },
+					LeapLabelSecondary = { fg = c.bg, bg = c.blue },
+					MiniIndentScopeSymbol = { fg = c.light_gray },
+					NvimTreeNormal = { bg = "none" },
+					LspDiagnosticsVirtualTextHint = { style = "italic" },
+					LspDiagnosticsVirtualTextError = { style = "italic" },
+					LspDiagnosticsVirtualTextWarning = { style = "italic" },
+					LspDiagnosticsVirtualTextInformation = { style = "italic" },
+					TelescopeSelection = { fg = c.fg, bg = c.float },
 				},
 			}
 		end,
 		config = function(_, opts)
-			require("onedark").setup(opts)
-			vim.cmd.colorscheme("onedark")
+			require("onenord").setup(opts)
 		end,
 	},
 }
