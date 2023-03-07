@@ -29,7 +29,7 @@ return {
 				desc = "Telescope live_grep (cwd)",
 			},
 			{
-				"<leader>f/",
+				"<leader>/",
 				"<cmd>Telescope current_buffer_fuzzy_find<cr>",
 				desc = "Telescope current_buffer_fuzzy_find",
 			},
@@ -96,6 +96,7 @@ return {
 			{ "<leader>fj", "<cmd>Telescope jumplist<cr>", desc = "Telescope jumplist" },
 			{ "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Telescope lsp_definitions" },
 			{ "gr", "<cmd>Telescope lsp_references<cr>", desc = "Telescope lsp_references" },
+			{ "gR", "<cmd>Telescope lsp_references include_current_line=true<cr>", desc = "Telescope lsp_references" },
 			{ "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Telescope lsp_type_definitions" },
 			{ "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Telescope lsp_document_symbols" },
 			{
@@ -129,6 +130,7 @@ return {
 							["<C-j>"] = actions.move_selection_next,
 							["<C-k>"] = actions.move_selection_previous,
 							["<C-q>"] = actions.smart_send_to_qflist,
+							["<C-o>"] = actions.smart_send_to_qflist + actions.open_qflist,
 							["<C-a>"] = actions.smart_add_to_qflist,
 							["<C-l>"] = actions.smart_send_to_loclist,
 							["<C-z>"] = actions.smart_add_to_loclist,
@@ -136,6 +138,7 @@ return {
 						},
 						n = {
 							["<C-q>"] = actions.smart_send_to_qflist,
+							["<C-o>"] = actions.smart_send_to_qflist + actions.open_qflist,
 							["<C-a>"] = actions.smart_add_to_qflist,
 							["<C-l>"] = actions.smart_send_to_loclist,
 							["<C-z>"] = actions.smart_add_to_loclist,
@@ -146,6 +149,16 @@ return {
 				pickers = {
 					find_files = {
 						find_command = { "fd", "--type", "f" },
+					},
+					buffers = {
+						mappings = {
+							i = {
+								["<C-x>"] = actions.delete_buffer,
+							},
+							n = {
+								["x"] = actions.delete_buffer,
+							},
+						},
 					},
 				},
 				extensions = {

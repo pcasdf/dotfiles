@@ -14,7 +14,7 @@ return {
 					LeapMatch = { fg = c.bg, bg = c.yellow },
 					LeapLabelPrimary = { fg = c.bg, bg = c.yellow },
 					LeapLabelSelected = { fg = c.bg, bg = c.highlight },
-					LeapLabelSecondary = { fg = c.bg, bg = c.blue },
+					LeapLabelSecondary = { fg = c.bg, bg = c.light_red },
 					MiniIndentScopeSymbol = { fg = c.light_gray },
 					NvimTreeNormal = { bg = "none" },
 					LspDiagnosticsVirtualTextHint = { style = "italic" },

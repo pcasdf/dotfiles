@@ -19,10 +19,6 @@ set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
-set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 

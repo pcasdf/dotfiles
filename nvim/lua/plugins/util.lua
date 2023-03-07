@@ -113,9 +113,9 @@ return {
 		"ojroques/vim-oscyank",
 		cmd = { "OSCYank", "OSCYankReg" },
 		keys = {
-			{ "<leader>yy", "<Plug>OSCYank", desc = "OSCYank" },
-			{ "<leader>yy", "<cmd>OSCYank<cr>", mode = { "v" }, desc = "OSCYank" },
-			{ "<leader>yr", "<cmd>OSCYankReg +<cr>", desc = "OSCYankReg" },
+			{ "<leader>yy", "<Plug>OSCYankOperator", desc = "OSCYankOperator" },
+			{ "<leader>yy", "<cmd>OSCYankVisual<cr>", mode = { "v" }, desc = "OSCYankVisual" },
+			{ "<leader>yr", "<cmd>OSCYankRegister +<cr>", desc = "OSCYankRegister" },
 		},
 	},
 	{

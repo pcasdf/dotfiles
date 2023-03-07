@@ -66,7 +66,6 @@ return {
 				end
 
 				set("n", "<leader>ls", diagnostic.setloclist, with({ desc = "Lsp diagnostic setloclist" }))
-				set("n", "gR", buf.references, with({ desc = "Lsp references" }))
 				set("i", "<C-l>", buf.signature_help, with({ desc = "Lsp signature_help" }))
 				set("n", "<leader>lf", function()
 					lsp_formatting(bufnr)
