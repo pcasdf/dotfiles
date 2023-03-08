@@ -224,9 +224,9 @@ return {
 					end)
 					return "<Ignore>"
 				end, { expr = true, desc = "Prev hunk" })
-				set({ "n", "v" }, "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Gitsigns stage_hunk" })
+				set({ "n", "x" }, "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Gitsigns stage_hunk" })
 				set("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Gitsigns undo_stage_hunk" })
-				set({ "n", "v" }, "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Gitsigns reset_hunk" })
+				set({ "n", "x" }, "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Gitsigns reset_hunk" })
 				set("n", "<leader>hS", gs.stage_buffer, { desc = "Gitsigns stage_buffer" })
 				set("n", "<leader>hR", gs.reset_buffer, { desc = "Gitsigns reset_buffer" })
 				set("n", "<leader>hp", gs.preview_hunk, { desc = "Gitsigns preview_hunk" })

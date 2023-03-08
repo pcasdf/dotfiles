@@ -10,7 +10,7 @@ set("n", "<C-k>", "<C-w><C-k>", { desc = "Go to window above" })
 set("n", "<C-l>", "<C-w><C-l>", { desc = "Go to window left" })
 set("n", "<C-h>", "<C-w><C-h>", { desc = "Go to window right" })
 
-set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 set("n", "<C-c>", "<C-w>c", { desc = "Close window" })
 set("n", "<C-q>", "<cmd>q<cr>", { desc = "Quit" })
 
@@ -19,8 +19,12 @@ set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
-set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+set("n", "<M-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+set("n", "<M-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+set("i", "<M-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+set("i", "<M-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+set("x", "<M-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+set("x", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
@@ -57,3 +61,6 @@ end, { desc = "Space above" })
 set("n", "]<space>", function()
 	vim.cmd("put =repeat(nr2char(10), v:count1)|silent '[-")
 end, { desc = "Space below" })
+
+set("n", "<C-_>", 'v:lua.MiniComment.operator() . "_"', { expr = true, desc = "Comment line" })
+set("x", "<C-_>", [[:<c-u>lua MiniComment.operator('visual')<cr>]], { desc = "Comment line" })

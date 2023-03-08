@@ -13,6 +13,7 @@ return {
 		},
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find_files" },
+			{ "<leader>,", "<cmd>Telescope find_files<cr>", desc = "Telescope find_files" },
 			{
 				"<leader>fF",
 				function()
@@ -21,6 +22,7 @@ return {
 				desc = "Telescope find_files (cwd)",
 			},
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live_grep" },
+			{ "<leader>.", "<cmd>Telescope live_grep<cr>", desc = "Telescope live_grep" },
 			{
 				"<leader>fG",
 				function()
@@ -78,6 +80,7 @@ return {
 			{ "<leader>fR", "<cmd>Telescope registers<cr>", desc = "Telescope registers" },
 			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Telescope keymaps" },
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
+            { "<leader><tab>", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
 			{ "<leader>fB", "<cmd>Telescope builtin<cr>", desc = "Telescope builtin" },
 			{ "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Telescope marks" },
 			{ "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Telescope oldfiles" },

@@ -1,32 +1,28 @@
 return {
 	{
-		"rmehri01/onenord.nvim",
+		"navarasu/onedark.nvim",
 		opts = function()
-			local c = require("onenord.colors").load()
+			local p = require("onedark.palette").dark
 			return {
-				custom_highlights = {
-					DiffDelete = { fg = c.diff_remove_bg },
+				style = "dark",
+				highlights = {
+					DiffDelete = { fg = p.diff_delete, bg = p.diff_delete },
 					FloatBorder = { bg = "none" },
-					FocusedSymbol = { fg = c.yellow, style = "italic" },
-					IlluminatedWordText = { bg = c.highlight },
-					IlluminatedWordRead = { bg = c.highlight },
-					IlluminatedWordWrite = { bg = c.highlight },
-					LeapMatch = { fg = c.bg, bg = c.yellow },
-					LeapLabelPrimary = { fg = c.bg, bg = c.yellow },
-					LeapLabelSelected = { fg = c.bg, bg = c.highlight },
-					LeapLabelSecondary = { fg = c.bg, bg = c.light_red },
-					MiniIndentScopeSymbol = { fg = c.light_gray },
-					NvimTreeNormal = { bg = "none" },
-					LspDiagnosticsVirtualTextHint = { style = "italic" },
-					LspDiagnosticsVirtualTextError = { style = "italic" },
-					LspDiagnosticsVirtualTextWarning = { style = "italic" },
-					LspDiagnosticsVirtualTextInformation = { style = "italic" },
-					TelescopeSelection = { fg = c.fg, bg = c.float },
+					NormalFloat = { bg = "none" },
+					QuickFixLine = { fg = "none", bg = p.bg2, fmt = "bold,italic" },
+					IlluminatedWordText = { bg = p.bg2 },
+					IlluminatedWordRead = { bg = p.bg2 },
+					IlluminatedWordWrite = { bg = p.bg2 },
+					LeapMatch = { fg = p.bg0, bg = p.yellow },
+					LeapLabelPrimary = { fg = p.bg0, bg = p.yellow },
+					LeapLabelSelected = { fg = p.bg0, bg = p.highlight },
+					LeapLabelSecondary = { fg = p.bg0, bg = p.red },
 				},
 			}
 		end,
 		config = function(_, opts)
-			require("onenord").setup(opts)
+			require("onedark").setup(opts)
+			vim.cmd.colorscheme("onedark")
 		end,
 	},
 }
