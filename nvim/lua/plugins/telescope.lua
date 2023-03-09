@@ -55,6 +55,15 @@ return {
 			{ "<leader>fa", "<cmd>Telescope git_files<cr>", desc = "Telescope git_files" },
 			{ "<leader>fe", "<cmd>Telescope file_browser file_browser<cr>", desc = "Telescope file_browser" },
 			{
+				"<leader><esc>",
+				function()
+					require("telescope").extensions.file_browser.file_browser({
+						path = require("telescope.utils").buffer_dir(),
+					})
+				end,
+				desc = "Telescope file_browser (cwd)",
+			},
+			{
 				"<leader>fE",
 				function()
 					require("telescope").extensions.file_browser.file_browser({
@@ -80,7 +89,7 @@ return {
 			{ "<leader>fR", "<cmd>Telescope registers<cr>", desc = "Telescope registers" },
 			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Telescope keymaps" },
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
-            { "<leader><tab>", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
+			{ "<leader><tab>", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
 			{ "<leader>fB", "<cmd>Telescope builtin<cr>", desc = "Telescope builtin" },
 			{ "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Telescope marks" },
 			{ "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Telescope oldfiles" },
@@ -125,6 +134,7 @@ return {
 
 			return {
 				defaults = {
+					layout_strategy = "vertical",
 					prompt_prefix = " ",
 					selection_caret = " ",
 					winblend = 12,

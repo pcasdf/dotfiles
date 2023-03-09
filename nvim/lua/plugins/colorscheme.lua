@@ -6,8 +6,9 @@ return {
 			return {
 				style = "dark",
 				highlights = {
+					BqfPreviewBorder = { fg = p.cyan, bg = "none" },
 					DiffDelete = { fg = p.diff_delete, bg = p.diff_delete },
-					FloatBorder = { bg = "none" },
+					FloatBorder = { fg = p.cyan, bg = "none" },
 					NormalFloat = { bg = "none" },
 					QuickFixLine = { fg = "none", bg = p.bg2, fmt = "bold,italic" },
 					IlluminatedWordText = { bg = p.bg2 },

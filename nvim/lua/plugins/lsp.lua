@@ -251,7 +251,10 @@ return {
 			-- { "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Lspsaga hover_doc" },
 		},
 		opts = {
-			ui = { winblend = 12 },
+			ui = {
+				winblend = 12,
+				border = "rounded",
+			},
 			lightbulb = { enable = false },
 			symbol_in_winbar = { separator = "  " },
 			beacon = { enable = false },

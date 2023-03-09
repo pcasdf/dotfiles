@@ -43,6 +43,13 @@ return {
 		opts = { labeled_modes = "nx" },
 	},
 	{
+		"ggandor/leap-spooky.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("leap-spooky").setup()
+		end,
+	},
+	{
 		"echasnovski/mini.comment",
 		event = "VeryLazy",
 		config = function()
@@ -85,7 +92,7 @@ return {
 	},
 	{
 		"echasnovski/mini.ai",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "nvim-treesitter-textobjects" },
 		opts = function()
 			local ai = require("mini.ai")
@@ -196,7 +203,7 @@ return {
 				changedelete = { text = "▎" },
 				untracked = { text = "▎" },
 			},
-			preview_config = { border = "single" },
+			preview_config = { border = "rounded" },
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
 
@@ -226,9 +233,9 @@ return {
 				end, { expr = true, desc = "Prev hunk" })
 				set({ "n", "x" }, "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Gitsigns stage_hunk" })
 				set("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Gitsigns undo_stage_hunk" })
-				set({ "n", "x" }, "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Gitsigns reset_hunk" })
-				set("n", "<leader>hS", gs.stage_buffer, { desc = "Gitsigns stage_buffer" })
-				set("n", "<leader>hR", gs.reset_buffer, { desc = "Gitsigns reset_buffer" })
+				set({ "n", "x" }, "<leader>hd", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Gitsigns reset_hunk" })
+				set("n", "<leader>ha", gs.stage_buffer, { desc = "Gitsigns stage_buffer" })
+				set("n", "<leader>hr", gs.reset_buffer, { desc = "Gitsigns reset_buffer" })
 				set("n", "<leader>hp", gs.preview_hunk, { desc = "Gitsigns preview_hunk" })
 				set(
 					"n",
@@ -239,7 +246,7 @@ return {
 				set("n", "<leader>hb", function()
 					gs.blame_line({ full = false })
 				end, { desc = "Gitsigns blame_line" })
-				set("n", "<leader>hB", function()
+				set("n", "<leader>hf", function()
 					gs.blame_line({ full = true })
 				end, { desc = "Gitsigns blame_line full" })
 				set({ "o", "x" }, "ih", "<cmd>Gitsigns select_hunk<cr>", { desc = "Gitsigns select_hunk" })
@@ -257,7 +264,7 @@ return {
 		"echasnovski/mini.bracketed",
 		event = "BufReadPost",
 		opts = {
-			comment = { suffix = "m" },
+			comment = { suffix = "k" },
 			diagnostic = { suffix = "" },
 			indent = { suffix = "" },
 			file = { suffix = "" },

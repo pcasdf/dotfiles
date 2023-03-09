@@ -12,7 +12,7 @@ set("n", "<C-h>", "<C-w><C-h>", { desc = "Go to window right" })
 
 set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 set("n", "<C-c>", "<C-w>c", { desc = "Close window" })
-set("n", "<C-q>", "<cmd>q<cr>", { desc = "Quit" })
+set("n", "<C-q>", "<cmd>qa<cr>", { desc = "Quit" })
 
 set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
@@ -50,6 +50,7 @@ set("n", "<leader>on", "<cmd>NullLsInfo<cr>", { desc = "Open Null" })
 set("n", "<leader>oi", "<cmd>LspInfo<cr>", { desc = "Open Lsp" })
 
 set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+set("n", "<leader>qa", "<cmd>qa!<cr>", { desc = "Quit all (force)" })
 
 set("n", "<leader>ww", "<cmd>w<cr>", { desc = "Write" })
 set("n", "<leader>wa", "<cmd>wa<cr>", { desc = "Write all" })
