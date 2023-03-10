@@ -73,10 +73,23 @@ return {
 				desc = "Telescope file_browser (cwd)",
 			},
 			{
+				"gw",
+				"<cmd>Telescope grep_string<cr>",
+				mode = { "n", "v" },
+				desc = "Telescope grep_string",
+			},
+			{
 				"<leader>fw",
 				"<cmd>Telescope grep_string<cr>",
 				mode = { "n", "v" },
 				desc = "Telescope grep_string",
+			},
+			{
+				"gW",
+				function()
+					require("telescope.builtin").grep_string({ cwd = require("telescope.utils").buffer_dir() })
+				end,
+				desc = "Telescope grep_string (cwd)",
 			},
 			{
 				"<leader>fW",

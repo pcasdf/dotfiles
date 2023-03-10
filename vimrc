@@ -2,7 +2,7 @@ let mapleader = " "
 
 call plug#begin()
 
-Plug 'joshdick/onedark.vim'
+Plug 'nordtheme/vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -55,7 +55,7 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType html       setlocal shiftwidth=2 tabstop=2
 
 syntax on
-colorscheme onedark
+colorscheme nord
 
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>

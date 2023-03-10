@@ -1,29 +1,28 @@
 return {
 	{
-		"navarasu/onedark.nvim",
+		"rmehri01/onenord.nvim",
 		opts = function()
-			local p = require("onedark.palette").dark
+			local c = require("onenord.colors").load()
 			return {
-				style = "dark",
-				highlights = {
-					BqfPreviewBorder = { fg = p.cyan, bg = "none" },
-					DiffDelete = { fg = p.diff_delete, bg = p.diff_delete },
-					FloatBorder = { fg = p.cyan, bg = "none" },
-					NormalFloat = { bg = "none" },
-					QuickFixLine = { fg = "none", bg = p.bg2, fmt = "bold,italic" },
-					IlluminatedWordText = { bg = p.bg2 },
-					IlluminatedWordRead = { bg = p.bg2 },
-					IlluminatedWordWrite = { bg = p.bg2 },
-					LeapMatch = { fg = p.bg0, bg = p.yellow },
-					LeapLabelPrimary = { fg = p.bg0, bg = p.yellow },
-					LeapLabelSelected = { fg = p.bg0, bg = p.highlight },
-					LeapLabelSecondary = { fg = p.bg0, bg = p.red },
+				custom_highlights = {
+					DiffDelete = { fg = c.diff_remove_bg },
+					FloatBorder = { bg = "none" },
+					IlluminatedWordText = { bg = c.highlight },
+					IlluminatedWordRead = { bg = c.highlight },
+					IlluminatedWordWrite = { bg = c.highlight },
+					IncSearch = { fg = c.yellow, bg = c.selection, style = "bold" },
+					LeapMatch = { fg = c.bg, bg = c.yellow },
+					LeapLabelPrimary = { fg = c.bg, bg = c.yellow },
+					LeapLabelSelected = { fg = c.bg, bg = c.highlight },
+					LeapLabelSecondary = { fg = c.bg, bg = c.light_red },
+					MiniIndentScopeSymbol = { fg = c.light_gray },
+					NvimTreeNormal = { bg = "none" },
+					TelescopeSelection = { fg = c.fg, bg = c.selection },
 				},
 			}
 		end,
 		config = function(_, opts)
-			require("onedark").setup(opts)
-			vim.cmd.colorscheme("onedark")
+			require("onenord").setup(opts)
 		end,
 	},
 }
