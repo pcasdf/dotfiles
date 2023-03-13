@@ -2,7 +2,7 @@ let mapleader = " "
 
 call plug#begin()
 
-Plug 'nordtheme/vim'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -54,8 +54,10 @@ set foldlevel=9
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType html       setlocal shiftwidth=2 tabstop=2
 
+let g:tokyonight_style = 'storm'
+
 syntax on
-colorscheme nord
+colorscheme tokyonight
 
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>

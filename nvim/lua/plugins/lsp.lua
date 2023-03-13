@@ -224,6 +224,7 @@ return {
 			{ "<leader>lr", "<cmd>Lspsaga rename<CR>", desc = "Lspsaga rename" },
 			{ "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", desc = "Lspsaga peek_definition" },
 			{ "<leader>lt", "<cmd>Lspsaga peek_type_definition<CR>", desc = "Lspsaga peek_type_definition" },
+			{ "<leader>lS", "<cmd>Lspsaga term_toggle<CR>", desc = "Lspsaga term_toggle" },
 			{ "<leader>ll", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Lspsaga show_line_diagnostics" },
 			{
 				"<leader>lc",
