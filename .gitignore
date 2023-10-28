@@ -1,0 +1,4 @@
+karabiner/automatic_backups
+nvim/plugin
+nvim/lazy-lock.json
+**/.luarc.json
