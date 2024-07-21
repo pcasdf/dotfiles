@@ -1,0 +1,32 @@
+# the scripting-addition must be loaded manually if
+# you are running yabai on macOS Big Sur. Uncomment
+# the following line to have the injection performed
+# when the config is executed during startup.
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+yabai -m config layout bsp
+
+yabai -m config top_padding    08
+yabai -m config bottom_padding 08
+yabai -m config left_padding   08
+yabai -m config right_padding  08
+yabai -m config window_gap     04
+
+yabai -m rule --add app="1Password" manage=off
+yabai -m rule --add app="Calendar" manage=off
+yabai -m rule --add app="Finder" manage=off
+yabai -m rule --add app="JetBrains Client" manage=off
+yabai -m rule --add app="JetBrains Gateway" manage=off
+yabai -m rule --add app="KakaoTalk" manage=off
+yabai -m rule --add app="Karabiner-Elements" manage=off
+yabai -m rule --add app="Messages" manage=off
+yabai -m rule --add app="PyCharm" manage=off
+yabai -m rule --add app="Raycast" manage=off
+yabai -m rule --add app="Simulator" manage=off
+yabai -m rule --add app="System Preferences" manage=off
+yabai -m rule --add app="System Settings" manage=off

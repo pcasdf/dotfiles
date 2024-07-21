@@ -1,0 +1,25 @@
+{
+  "title": "Map right command to hyper",
+  "rules": [
+    {
+      "description": "Map right command to hyper",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_command"
+          },
+          "to": [
+            {
+              "key_code": "left_command",
+              "modifiers": [
+                "left_control",
+                "left_option"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

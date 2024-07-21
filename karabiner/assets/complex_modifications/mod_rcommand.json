@@ -1,0 +1,24 @@
+{
+  "title": "Map right command to command+shift",
+  "rules": [
+    {
+      "description": "Map right command to command+shift",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_command"
+          },
+          "to": [
+            {
+              "key_code": "left_command",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

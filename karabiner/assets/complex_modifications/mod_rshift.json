@@ -1,0 +1,24 @@
+{
+  "title": "Map right shift to ctrl+shift",
+  "rules": [
+    {
+      "description": "Map right shift to ctrl+shift",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_shift"
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "modifiers": [
+                "left_shift"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

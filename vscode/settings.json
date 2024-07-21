@@ -1,0 +1,128 @@
+{
+    "editor.fontFamily": "'MesloLGS Nerd Font', monospace",
+    "editor.fontSize": 15,
+    "explorer.autoReveal": "focusNoScroll",
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1,
+    },
+    "files.insertFinalNewline": true,
+    "files.simpleDialog.enable": true,
+    "github.copilot.editor.enableAutoCompletions": false,
+    "github.copilot.enable": {
+        "*": true,
+    },
+    "gitlens.advanced.messages": {
+        "suppressIntegrationRequestTimedOutWarning": true,
+    },
+    "gitlens.keymap": "alternate",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.commandsToSkipShell": [
+        "-workbench.action.quickOpenView",
+    ],
+    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.gpuAcceleration": "off",
+    "terminal.integrated.macOptionIsMeta": true,
+    "vim.camelCaseMotion.enable": true,
+    "vim.handleKeys": {
+        "<C-a>": true,
+        "<C-b>": true,
+        "<C-d>": true,
+        "<C-e>": true,
+        "<C-f>": true,
+        "<C-i>": true,
+        "<C-o>": true,
+        "<C-r>": true,
+        "<C-u>": true,
+        "<C-v>": true,
+        "<C-w>": true,
+        "<C-x>": true,
+        "<C-y>": true,
+        "<C-[>": true,
+    },
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "<C-a>",
+            ],
+            "commands": [
+                "cursorHome",
+            ],
+            "silent": true,
+        },
+        {
+            "before": [
+                "<C-e>",
+            ],
+            "commands": [
+                "cursorEnd",
+            ],
+            "silent": true,
+        },
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                " ",
+            ],
+            "commands": [
+                ":nohl",
+            ],
+            "silent": true,
+        },
+        {
+            "before": [
+                "K",
+            ],
+            "commands": [
+                "lineBreakInsert",
+            ],
+            "silent": true,
+        },
+        {
+            "before": [
+                "g",
+                "o",
+            ],
+            "commands": [
+                "editor.action.goToReferences",
+            ],
+            "silent": true,
+        },
+    ],
+    "vim.replaceWithRegister": true,
+    "vim.smartRelativeLine": true,
+    "vim.sneak": true,
+    "vim.sneakReplacesF": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    "vim.targets.enable": true,
+    "vim.useCtrlKeys": false,
+    "vim.useSystemClipboard": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.editorAssociations": {
+        "git-rebase-todo": "default",
+    },
+    "workbench.settings.editor": "json",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+    },
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+}
