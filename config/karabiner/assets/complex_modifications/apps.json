@@ -1,0 +1,100 @@
+{
+  "title": "Apps",
+  "rules": [
+    {
+      "description": "Chrome",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["left_control", "left_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open '/Applications/Google Chrome.app'"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Discord",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": ["left_control", "left_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open '/Applications/Discord Canary.app' || open 'Applications/Discord.app'"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "WezTerm",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": ["left_control", "left_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open '/Applications/WezTerm.app'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "kitty",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": ["left_control", "left_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open '/Applications/kitty.app'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "VS Code",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "v",
+            "modifiers": {
+              "mandatory": ["left_control", "left_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open '/Applications/Visual Studio Code.app'"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
